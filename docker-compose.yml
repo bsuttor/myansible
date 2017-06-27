@@ -1,0 +1,10 @@
+version: '3'
+services:
+    peronal:
+        build: .
+        ports:
+            - 5901:5901
+            # - 5900:5900
+        volumes:
+            - ./:/home/bsuttor/myansible
+            - /etc/localtime:/etc/localtime:ro

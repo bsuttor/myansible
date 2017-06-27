@@ -1,0 +1,13 @@
+---
+- name: Common | Install package utilities
+  apt: pkg={{ item }} state=present update_cache=yes
+  become: yes
+  tags: packages
+  with_items:
+   - curl
+   - htop
+   - tig
+   - apt-utils
+
+- include: vim.yml
+- include: dropbox.yml

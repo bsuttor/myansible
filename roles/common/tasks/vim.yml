@@ -1,0 +1,4 @@
+---
+- name: be sure vim is installed
+  apt: name=vim state=installed
+  tags: vim

@@ -1,0 +1,94 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: dropbox | Check user
+  user: name={{ dropbox_owner }} state={{ dropbox_user_state }}
+
+- name: dropbox | Check user home directory
+  stat: path={{ dropbox_owner_home }}
+  register: home_present
+
+- debug: msg="dropbox | Path exists and is a directory"
+  when: home_present.stat.isdir is defined and home_present.stat.isdir == true
+
+- name: dropbox | Create user directory
+  file:
+    dest="{{ dropbox_user_directory }}"
+    state=directory
+    owner="{{ dropbox_owner }}"
+    group="{{ dropbox_group }}"
+  tags: dropbox_setup
+  ignore_errors: true
+
+- name: dropbox | Create base directory
+  file:
+    dest="{{ dropbox_directory }}"
+    state=directory
+    owner="{{ dropbox_owner }}"
+    group="{{ dropbox_group }}"
+  tags: dropbox_setup
+  ignore_errors: true
+
+- name: dropbox | Add dropbox configuration.
+  template:
+    src: "info.json.j2"
+    dest: "{{ dropbox_directory }}/info.json"
+    owner: "{{ dropbox_owner }}"
+    group: "{{ dropbox_group }}"
+    mode: 0644
+  ignore_errors: true
+#  notify: restart dropbox
+
+- name: install dropbox - add dropbox key
+  apt_key:
+    keyserver: pgp.mit.edu
+    state: present
+    id: 5044912E
+  become: yes
+
+- name: install dropbox - add to dropbox.list
+  lineinfile:
+    dest: /etc/apt/sources.list.d/dropbox.list
+    line: "deb http://linux.dropbox.com/ubuntu/ trusty main"
+    create: yes
+  become: yes
+
+- name: install dropbox
+  apt:
+    name: dropbox
+    update_cache: yes
+  become: yes
+
+
+
+# - name: dropbox | Install Dropbox control script
+#   get_url: dest=/usr/local/bin/dropbox.py url=https://www.dropbox.com/download?dl=packages/dropbox.py mode=0755 validate_certs=no
+#   become: yes
+#
+# - name: dropbox | Install Dropbox
+#   shell: curl -L "https://www.dropbox.com/download?plat=lnx.{{ ansible_architecture }}" | tar -C $HOME -xzf - creates={{ dropbox_owner_home }}/.dropbox-dist/dropboxd
+
+# - name: dropbox | Configure KDE to autostart dropboxd
+#   file: path={{ dropbox_owner_home }}/.kde/Autostart/dropboxd src={{ dropbox_owner_home }}/.dropbox-dist/dropboxd state=link
+#   ignore_errors: True
+
+- name: dropbox | Install dropbox utilities
+  apt: pkg={{ item }} state=present update_cache=yes
+  become: yes
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and dropbox_utilities_enabled
+  tags: package
+  with_items:
+   - nautilus-dropbox
+   - libappindicator1
+
+- name: dropbox | Check dropbox status
+  command: /usr/bin/dropbox start
+  register: status
+  become: true
+  become_user: "{{ dropbox_owner }}"
+
+- name: dropbox | Start dropboxd
+  shell: /usr/bin/dropbox start -i >/dev/null 2>&1
+  when: status.stdout == "Dropbox isn't running!"
+  become: true
+  become_user: "{{ dropbox_owner }}"
