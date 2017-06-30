@@ -7,9 +7,10 @@ install:
 	sudo apt-add-repository -y ppa:ansible/ansible
 	sudo apt-get update
 	sudo apt-get install -y ansible
+	sudo ansible-playbook setup.yml -i hosts -c local -v --extra-vars "@config.json" #--ask-sudo-pass
 
 apply:
-	sudo ansible-playbook setup.yml -i hosts -c local -v --extra-vars "@config.json" #--ask-sudo-pass
+	sudo ansible-playbook apply.yml -i hosts -c local -v --extra-vars "@config.json" #--ask-sudo-pass
 
 build:
 	docker-compose rm -f

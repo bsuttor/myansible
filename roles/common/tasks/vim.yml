@@ -2,3 +2,10 @@
 - name: be sure vim is installed
   apt: name=vim state=installed
   tags: vim
+
+- file:
+  src: "{{ homepath }}/.vimrc"
+  dest: "{{ homepath }}/Dropbox/config/vimrc"
+  owner: {{ username }}
+  group: {{ username }}
+  state: link

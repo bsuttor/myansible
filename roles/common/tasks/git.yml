@@ -1,0 +1,26 @@
+---
+- name: git | Add .gitconfig file
+  template:
+    src: ".gitconfig"
+    dest: "{{ homepath }}/.gitconfig"
+    owner: {{ username }}
+    group: {{ username }}
+    mode: 0755
+
+
+- name: git | Add .gitignore file
+  template:
+    src: ".gitignore"
+    dest: "{{ homepath }}/.gitignore"
+    owner: {{ username }}
+    group: {{ username }}
+    mode: 0755
+
+# - name: dropbox | Add dropbox configuration.
+#   template:
+#     src: "info.json.j2"
+#     dest: "{{ dropbox_directory }}/info.json"
+#     owner: "{{ dropbox_owner }}"
+#     group: "{{ dropbox_group }}"
+#     mode: 0644
+#   ignore_errors: true

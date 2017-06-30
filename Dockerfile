@@ -16,6 +16,8 @@ ENV USER bsuttor
 #     cd /tmp ; dpkg-deb -b . /fuse.deb && \
 #     cd /tmp ; dpkg -i /fuse.deb
 
+# RUN localectl set-locale LANG="en_US.UTF-8"
+
 # Upstart and DBus have issues inside docker.
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -sf /bin/true /sbin/initctl
 # Install GNOME and tightvnc server.
@@ -51,7 +53,6 @@ ADD dev_files/passwd /home/bsuttor/.vnc/passwd
 RUN sudo chown bsuttor:bsuttor -R /home/bsuttor/.vnc/
 RUN sudo chmod +x /home/bsuttor/.vnc/xstartup
 RUN sudo chmod 600 /home/bsuttor/.vnc/passwd
-
 CMD sudo su - bsuttor -c "/usr/bin/vncserver :1 -geometry 1280x800 -depth 24 && tail -f /home/bsuttor/.vnc/*:1.log"
 
 EXPOSE 5901

@@ -1,0 +1,21 @@
+[user]
+	name = {{ name }}
+	email = bsuttor@imio.be
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    lg = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[push]
+	default = simple
+[core]
+	excludesfile = {{ homepath }}/.gitignore
+	editor = /usr/bin/vim
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true

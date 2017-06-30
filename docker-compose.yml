@@ -8,3 +8,4 @@ services:
         volumes:
             - ./:/home/bsuttor/myansible
             - /etc/localtime:/etc/localtime:ro
+            - /etc/locale.gen:/etc/locale.gen:ro

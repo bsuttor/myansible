@@ -9,5 +9,7 @@
    - tig
    - apt-utils
 
+- include: keys.yml
 - include: vim.yml
-- include: dropbox.yml
+- include: atom.yml
+- include: git.yml
