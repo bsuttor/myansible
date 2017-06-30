@@ -10,6 +10,8 @@
    - apt-utils
 
 - include: keys.yml
+- include: ssh.yml
+- include: git.yml
 - include: vim.yml
 - include: atom.yml
-- include: git.yml
+- include: zsh.yml

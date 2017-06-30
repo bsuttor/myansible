@@ -3,8 +3,8 @@
   template:
     src: ".gitconfig"
     dest: "{{ homepath }}/.gitconfig"
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: 0755
 
 
@@ -12,8 +12,8 @@
   template:
     src: ".gitignore"
     dest: "{{ homepath }}/.gitignore"
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: 0755
 
 # - name: dropbox | Add dropbox configuration.

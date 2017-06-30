@@ -3,9 +3,15 @@
   apt: name=vim state=installed
   tags: vim
 
-- file:
-  src: "{{ homepath }}/.vimrc"
-  dest: "{{ homepath }}/Dropbox/config/vimrc"
-  owner: {{ username }}
-  group: {{ username }}
-  state: link
+- name: vim | link vimrc to Dropbox
+  file:
+    src: "{{ homepath }}/.vimrc"
+    dest: "{{ homepath }}/Dropbox/config/vimrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link
+
+- name: vim | update/clone vundle
+  git:
+    repo: 'https://github.com/VundleVim/Vundle.vim.git'
+    dest: "{{ homepath }}/.vim/bundle/Vundle.vim"

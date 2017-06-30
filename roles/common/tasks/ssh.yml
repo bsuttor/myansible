@@ -3,14 +3,14 @@
 - name: ssh | Check if id_rsa file exists
   file:
     path: "{{ homepath }}/.ssh/id_rsa.pub"
-    owner: {{ username }}
-    group: {{ username }}
+    owner: "{{ username }}"
+    group: "{{ username }}"
     mode: 0600
 
 - name: ssh | Add public key
   template:
-      src: "id_rsa.pub"
-      dest: "{{ homepath }}/.ssh/id_rsa.pub"
-      owner: {{ username }}
-      group: {{ username }}
-      mode: 0755
+    src: "id_rsa.pub"
+    dest: "{{ homepath }}/.ssh/id_rsa.pub"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755

@@ -1,4 +1,8 @@
 ---
-- name: be sure atom is installed
-  apt: name=atom state=latest
-  tags: atom
+- name: atom | link atom config file to dropbox file
+  file:
+    src: "{{ homepath }}/.atom/config.cson"
+    dest: "{{ homepath }}/Dropbox/config/atom_config.cson"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link

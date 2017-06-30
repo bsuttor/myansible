@@ -1,0 +1,9 @@
+---
+- name: be sure zsh is installed
+  apt: name=zsh state=latest
+  tags: zsh
+
+- name: zsh | update/clone oh-my-zsh
+  git:
+    repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
+    dest: "{{ homepath }}/.oh-my-zsh"
