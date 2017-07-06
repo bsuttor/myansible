@@ -9,7 +9,7 @@
 
 - name: ssh | Add public key
   template:
-    src: "id_rsa.pub"
+    src: "files/id_rsa.pub"
     dest: "{{ homepath }}/.ssh/id_rsa.pub"
     owner: "{{ username }}"
     group: "{{ username }}"

@@ -5,8 +5,8 @@
 
 - name: vim | link vimrc to Dropbox
   file:
-    src: "{{ homepath }}/.vimrc"
-    dest: "{{ homepath }}/Dropbox/config/vimrc"
+    src: "{{ homepath }}/Dropbox/config/vimrc"
+    dest: "{{ homepath }}/.vimrc"
     owner: "{{ username }}"
     group: "{{ username }}"
     state: link

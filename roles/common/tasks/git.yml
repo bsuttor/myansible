@@ -1,7 +1,7 @@
 ---
 - name: git | Add .gitconfig file
   template:
-    src: ".gitconfig"
+    src: "files/.gitconfig"
     dest: "{{ homepath }}/.gitconfig"
     owner: "{{ username }}"
     group: "{{ username }}"
@@ -10,7 +10,7 @@
 
 - name: git | Add .gitignore file
   template:
-    src: ".gitignore"
+    src: "files/.gitignore"
     dest: "{{ homepath }}/.gitignore"
     owner: "{{ username }}"
     group: "{{ username }}"

@@ -1,0 +1,8 @@
+---
+name: Benoît Suttor
+username: bsuttor
+homepath: /home/bsuttor
+atom_upgrade_all: True
+atom_packages:
+  - language-ansible
+bin_dir: /usr/local/bin

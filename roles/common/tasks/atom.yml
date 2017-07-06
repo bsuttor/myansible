@@ -1,8 +1,8 @@
 ---
 - name: atom | link atom config file to dropbox file
   file:
-    src: "{{ homepath }}/.atom/config.cson"
-    dest: "{{ homepath }}/Dropbox/config/atom_config.cson"
+    src: "{{ homepath }}/Dropbox/config/atom_config.cson"
+    dest: "{{ homepath }}/.atom/config.cson"
     owner: "{{ username }}"
     group: "{{ username }}"
     state: link
