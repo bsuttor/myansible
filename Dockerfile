@@ -37,6 +37,8 @@ ADD dev_files/gnome-docker-fix-and-customise.sh /usr/local/etc/gnome-docker-fix-
 RUN chmod +x /usr/local/etc/gnome-docker-fix-and-customise.sh
 
 RUN apt-get install -y software-properties-common sudo git
+RUN echo "Europe/Brussels" > /etc/timezone
+RUN dpkg-reconfigure tzdata
 
 RUN useradd -ms /bin/bash bsuttor && echo "bsuttor:bsuttor" | chpasswd && adduser bsuttor sudo
 RUN echo "bsuttor ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/bsuttor && \

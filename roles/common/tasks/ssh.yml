@@ -2,7 +2,7 @@
 
 - name: ssh | Check if id_rsa file exists
   file:
-    path: "{{ homepath }}/.ssh/id_rsa.pub"
+    path: "{{ homepath }}/.ssh/id_rsa"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0600
