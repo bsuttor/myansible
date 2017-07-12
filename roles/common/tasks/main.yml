@@ -1,17 +1,26 @@
 ---
-- name: Common | Install package utilities
+- name: common | install package utilities
   apt: pkg={{ item }} state=present update_cache=yes
   become: yes
   tags: packages
   with_items:
+   - apt-utils
    - curl
    - htop
+   - openssh
    - tig
-   - apt-utils
+   - wget
 
-- include: keys.yml
-- include: ssh.yml
-- include: git.yml
-- include: vim.yml
 - include: atom.yml
+- include: buildout.yml
+- include: chromium.yml
+- include: git.yml
+- include: lastpass.yml
+- include: plone.yml
+- include: pythons.yml
+- include: rvm.yml
+- include: slack.yml
+- include: ssh.yml
+- include: vim.yml
+- include: yubikey.yml
 - include: zsh.yml

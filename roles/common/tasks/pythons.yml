@@ -1,0 +1,20 @@
+---
+- name: pythons | python-tools | update/clone python-tools repo
+  git:
+    repo: 'https://github.com/bsuttor/python-tools.git'
+    dest: "/opt/python-tools"
+  when: installation|success
+  register: cloning
+  sudo: no
+
+- name: pythons | python-tools | create buildout
+  command: python bootstrap.py
+  args:
+    chdir: /opt/python-tools
+    creates: bin/buildout
+
+- name: pythons | python-tools | start buildout
+  command: bin/buildout
+  args:
+    chdir: /opt/python-tools
+    creates: bin/fullrelease

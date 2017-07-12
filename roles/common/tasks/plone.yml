@@ -1,0 +1,34 @@
+---
+
+- name: plone | install package needed by Zope/Plone
+  apt: pkg={{ item }} state=present update_cache=yes
+  become: yes
+  tags: packages
+  with_items:
+   - build-essential
+   - git
+   - libbz2-dev
+   - libjpeg62-dev
+   - libreadline-gplv2-dev
+   - libssl-dev
+   - libxml2-dev
+   - libxslt1-dev
+   - poppler-utils
+   - python-dev
+   - python-virtualenv
+   - wv
+   # - subversion
+
+- name: plone | install packages needed by Pillow
+  apt: pkg={{ item }} state=present update_cache=yes
+  become: yes
+  tags: packages
+  with_items:
+   - libfreetype6-dev
+   - libjpeg8-dev
+   - liblcms2-dev
+   - libtiff5-dev
+   - libwebp-dev
+   - tcl8.6-dev
+   - tk8.6-dev
+   - zlib1g-dev

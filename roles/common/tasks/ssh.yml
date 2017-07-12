@@ -1,16 +1,33 @@
 ---
 
-- name: ssh | Check if id_rsa file exists
+- name: ssh | check if id_rsa file exists
   file:
     path: "{{ homepath }}/.ssh/id_rsa"
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0600
 
-- name: ssh | Add public key
-  template:
-    src: "files/id_rsa.pub"
+- name: ssh | link public key to Dropbox
+  file:
+    src: "{{ homepath }}/Dropbox/config/ssh/id_rsa.pub"
     dest: "{{ homepath }}/.ssh/id_rsa.pub"
     owner: "{{ username }}"
     group: "{{ username }}"
+    state: link
     mode: 0755
+
+- name: ssh | link config to Dropbox
+  file:
+    src: "{{ homepath }}/Dropbox/config/ssh/config"
+    dest: "{{ homepath }}/.ssh/config"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link
+
+- name: ssh | link known_hosts to Dropbox
+  file:
+    src: "{{ homepath }}/Dropbox/config/ssh/known_hosts"
+    dest: "{{ homepath }}/.ssh/known_hosts"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link

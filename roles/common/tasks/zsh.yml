@@ -1,9 +1,21 @@
 ---
-- name: be sure zsh is installed
+- name: zsh | installation
   apt: name=zsh state=latest
+  register: installation
   tags: zsh
 
 - name: zsh | update/clone oh-my-zsh
   git:
     repo: 'https://github.com/robbyrussell/oh-my-zsh.git'
     dest: "{{ homepath }}/.oh-my-zsh"
+  when: installation|success
+  register: cloning
+  sudo: no
+
+- name: zsh | link zshrc to Dropbox
+  file:
+    src: "{{ homepath }}/Dropbox/config/zshrc"
+    dest: "{{ homepath }}/.zshrc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link

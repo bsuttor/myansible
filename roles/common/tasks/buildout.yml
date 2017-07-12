@@ -1,0 +1,9 @@
+--
+
+- name: git | add default.cfg file
+  template:
+    src: "templates/default.cfg"
+    dest: "{{ homepath }}/.buildout/default.cfg"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0755

@@ -1,0 +1,21 @@
+---
+- name: slack | install gdebi
+  apt: name=gdebi
+  sudo: yes
+
+- name: slack | check if is installed
+  command: dpkg-query -W slack-desktop
+  register: is_slack_installed
+  failed_when: false
+  changed_when: false
+
+- name: slack | download package
+  command: "wget -O /tmp/slack-desktop.deb https://downloads.slack-edge.com/linux_releases/slack-desktop-{{ slack_version }}-amd64.deb"
+  args:
+    creates: "/tmp/slack-desktop.deb"
+  when: is_slack_installed.rc == 1
+
+- name: slack | install package
+  sudo: true
+  command: gdebi --non-interactive /tmp/slack-desktop.deb
+  when: is_slack_installed.rc == 1

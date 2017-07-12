@@ -1,0 +1,26 @@
+---
+- name: rvm | check for mpapis gpg key as root
+  shell: gpg --list-keys mpapis
+  sudo: true
+  register: mpapis_gpg_key_exists
+  ignore_errors: true
+
+- name: rvm | receiving key as root
+  shell: "curl -sSL https://rvm.io/mpapis.asc | gpg --import -"
+  sudo: true
+  when: mpapis_gpg_key_exists is defined and mpapis_gpg_key_exists.rc is defined and mpapis_gpg_key_exists.rc != 0
+
+- name: rvm | add ppa repository
+  apt_repository:
+    repo: 'ppa:rael-gc/rvm'
+    state: present
+    update_cache: yes
+  become: yes
+  become_user: root
+
+- name: rvm | install
+  apt:
+    name: rvm
+    state: present
+  become: yes
+  become_user: root

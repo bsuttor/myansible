@@ -9,10 +9,10 @@ install:
 	sudo apt-get install -y ansible
 	sudo ansible-galaxy install gantsign.atom
 	sudo ansible-galaxy install jgkim.atom
-	sudo ansible-playbook setup.yml -i hosts -c local -v --extra-vars "@config.json" #--ask-sudo-pass
+	sudo ansible-playbook setup.yml -i hosts -c local -v #--ask-sudo-pass
 
 apply:
-	sudo ansible-playbook apply.yml -i hosts -c local -v --extra-vars "@config.json" #--ask-sudo-pass
+	sudo ansible-playbook apply.yml -i hosts -c local -v #--ask-sudo-pass
 
 build:
 	docker-compose rm -f

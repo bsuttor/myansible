@@ -1,0 +1,33 @@
+---
+- name: lastpass | check for lpass in path
+  command: which lpass
+  ignore_errors: yes
+  register: lpass
+
+- name: lastpass | install lpass dependencies
+  become: true
+  apt: pkg={{ item }} state=present update_cache=yes
+  tags: packages
+  with_items:
+  - build-essential
+  - cmake
+  - libcurl4-openssl-dev
+  - libssl-dev
+  - libxml2
+  - libxml2-dev
+  - openssl
+  - pinentry-curses
+  - pkg-config
+  - xclip
+  when: lpass.rc != 0
+
+- name: lastpass | git lastpass-cli.
+  become: true
+  git: repo=https://github.com/lastpass/lastpass-cli.git
+       dest=/usr/src/lastpass-cli force=yes version=0.8.1
+  when: lpass.rc != 0
+
+- name: lastpass | install lpass
+  become: true
+  command: make install chdir=/usr/src/lastpass-cli
+  when: lpass.rc != 0

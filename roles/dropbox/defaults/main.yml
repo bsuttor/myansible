@@ -1,5 +1,4 @@
 user: "{{ lookup('env','USER') }}"
-
 home: "{{ lookup('env','HOME') }}"
 dropbox_owner_home: "{{ home }}"
 dropbox_user_state: present

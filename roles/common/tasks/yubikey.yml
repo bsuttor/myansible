@@ -1,0 +1,14 @@
+---
+- name: yubikey | add Yubico stable ppa repo
+  apt_repository: repo=ppa:yubico/stable state=present update_cache=yes
+
+- name: yubikey | install yubikey-personalization tool
+  apt: pkg=yubikey-personalization state=present
+
+- name: yubikey | install yubikey-personalization-gui
+  apt: pkg=yubikey-personalization-gui state=present
+  when: yubikey_personalization_gui
+
+- name: yubikey | install yubikey-neo-manager
+  apt: pkg=yubikey-neo-manager state=present
+  when: yubikey_neo_manager

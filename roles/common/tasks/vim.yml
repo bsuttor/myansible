@@ -1,5 +1,5 @@
 ---
-- name: be sure vim is installed
+- name: vim | package is installed
   apt: name=vim state=installed
   tags: vim
 
@@ -15,3 +15,6 @@
   git:
     repo: 'https://github.com/VundleVim/Vundle.vim.git'
     dest: "{{ homepath }}/.vim/bundle/Vundle.vim"
+
+- name: vim | install vundle plugins
+  shell: vim +PluginInstall +qall
