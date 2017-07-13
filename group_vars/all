@@ -5,7 +5,7 @@ homepath: "{{ lookup('env','HOME') }}"
 atom_upgrade_all: True
 atom_packages:
   - atom-beautify
-  - autocomplete-pyton
+  - autocomplete-python
   - blame
   - editorconfig
   - hyperclick
