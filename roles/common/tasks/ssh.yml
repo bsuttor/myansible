@@ -1,4 +1,11 @@
 ---
+- name: ssh | add .ssh directory
+  file:
+    path: "{{ homepath }}/.ssh"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: 0700
+    state: directory
 
 - name: ssh | check if id_rsa file exists
   file:

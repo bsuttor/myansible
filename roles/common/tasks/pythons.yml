@@ -1,20 +1,32 @@
 ---
+- name: pythons | set good owner of /opt
+  file:
+    path: "/opt"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+
 - name: pythons | python-tools | update/clone python-tools repo
   git:
-    repo: 'https://github.com/bsuttor/python-tools.git'
+    repo: "git@github.com:bsuttor/python-tools.git"
     dest: "/opt/python-tools"
-  when: installation|success
-  register: cloning
-  sudo: no
+    accept_hostkey: yes
+  become: yes
+  become_user: "{{ username }}"
 
 - name: pythons | python-tools | create buildout
   command: python bootstrap.py
   args:
     chdir: /opt/python-tools
     creates: bin/buildout
+  become: yes
+  become_user: "{{ username }}"
+
 
 - name: pythons | python-tools | start buildout
   command: bin/buildout
   args:
     chdir: /opt/python-tools
     creates: bin/fullrelease
+  become: yes
+  become_user: "{{ username }}"

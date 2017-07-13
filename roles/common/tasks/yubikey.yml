@@ -7,8 +7,6 @@
 
 - name: yubikey | install yubikey-personalization-gui
   apt: pkg=yubikey-personalization-gui state=present
-  when: yubikey_personalization_gui
 
 - name: yubikey | install yubikey-neo-manager
   apt: pkg=yubikey-neo-manager state=present
-  when: yubikey_neo_manager

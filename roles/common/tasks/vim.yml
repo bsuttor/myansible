@@ -10,11 +10,17 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     state: link
+  become: yes
+  become_user: "{{ username }}"
 
 - name: vim | update/clone vundle
   git:
     repo: 'https://github.com/VundleVim/Vundle.vim.git'
-    dest: "{{ homepath }}/.vim/bundle/Vundle.vim"
+    dest: "{{ homepath }}/.vim/bundle/vundle"
+  become: yes
+  become_user: "{{ username }}"
 
 - name: vim | install vundle plugins
   shell: vim +PluginInstall +qall
+  become: yes
+  become_user: "{{ username }}"

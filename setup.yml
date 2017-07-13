@@ -3,10 +3,3 @@
   connection: local
   roles:
     - dropbox
-  tasks:
-      - file:
-          path: "/home/bsuttor/.ssh"
-          owner: bsuttor
-          group: bsuttor
-          mode: 0700
-          state: directory

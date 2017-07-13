@@ -1,0 +1,24 @@
+---
+
+- name: docker | add repository key
+  apt_key:
+    id: "9DC858229FC7DD38854AE2D88D81803C0EBFCD88"
+    keyserver: "https://download.docker.com/linux/ubuntu/gpg"
+    state: present
+
+- name: docker | install (or update) docker package
+  apt:
+    name: "docker"
+    state: "latest"
+
+- name: docker | start
+  service:
+    name: docker
+    state: started
+
+# ATTENTION: this task can potentially create new users!
+- name: docker | add user to the docker group
+  user:
+    name:   "{{ username }}"
+    groups: docker
+    append: yes

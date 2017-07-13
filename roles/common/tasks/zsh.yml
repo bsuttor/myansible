@@ -10,7 +10,8 @@
     dest: "{{ homepath }}/.oh-my-zsh"
   when: installation|success
   register: cloning
-  sudo: no
+  become: yes
+  become_user: "{{ username }}"
 
 - name: zsh | link zshrc to Dropbox
   file:
@@ -19,3 +20,5 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     state: link
+  become: yes
+  become_user: "{{ username }}"

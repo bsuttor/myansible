@@ -1,7 +1,7 @@
 ---
 name: Benoît Suttor
-username: "{{ lookup('env','USER') }}"
-homepath: "{{ lookup('env','HOME') }}"
+username: "bsuttor"
+homepath: "/home/bsuttor"
 atom_upgrade_all: True
 atom_packages:
   - atom-beautify
@@ -23,4 +23,6 @@ atom_packages:
   - sort-lines
   - toggle-quotes
 bin_dir: /usr/local/bin
-github_username: "{{ lookup('env','HOME') }}"
+gnome_extension_path: /home/bsuttor/.local/share/gnome-shell/extensions/
+github_username: "bsuttor"
+gnome_shell_extensions: [15, 120, 178, 484, 723, 779]

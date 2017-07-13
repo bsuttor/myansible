@@ -1,6 +1,14 @@
 ---
 - name: atom | link atom config file to dropbox file
   file:
+    path: "{{ homepath }}/.atom"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    recurse: yes
+    state: directory
+
+- name: atom | link atom config file to dropbox file
+  file:
     src: "{{ homepath }}/Dropbox/config/atom_config.cson"
     dest: "{{ homepath }}/.atom/config.cson"
     owner: "{{ username }}"

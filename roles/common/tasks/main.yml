@@ -7,20 +7,31 @@
    - apt-utils
    - curl
    - htop
-   - openssh
+   - openssh-server
    - tig
    - wget
 
+- name: common | install package used to gnome shell
+  apt: pkg={{ item }} state=present update_cache=yes
+  become: yes
+  tags: packages
+  with_items:
+   - gir1.2-gtop-2.0
+   - gir1.2-networkmanager-1.0
+   - gir1.2-clutter-1.0
+
+- include: ssh.yml
 - include: atom.yml
 - include: buildout.yml
 - include: chromium.yml
+- include: docker.yml
 - include: git.yml
+# - include: gnome-shell.yml
 - include: lastpass.yml
 - include: plone.yml
 - include: pythons.yml
 - include: rvm.yml
 - include: slack.yml
-- include: ssh.yml
 - include: vim.yml
 - include: yubikey.yml
 - include: zsh.yml

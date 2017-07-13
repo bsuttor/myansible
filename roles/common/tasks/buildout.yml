@@ -1,6 +1,12 @@
 ---
+- name: buildout | add .buildout directory
+  file:
+    path: "{{ homepath }}/.buildout"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
 
-- name: git | add default.cfg file
+- name: buildout | add default.cfg file
   template:
     src: "templates/default.cfg"
     dest: "{{ homepath }}/.buildout/default.cfg"

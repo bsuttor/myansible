@@ -1,5 +1,4 @@
-
-
+#!/usr/bin/make
 
 install:
 	# todo: check if ansible is not installed
@@ -9,6 +8,7 @@ install:
 	sudo apt-get install -y ansible
 	sudo ansible-galaxy install gantsign.atom
 	sudo ansible-galaxy install jgkim.atom
+	sudo ansible-galaxy install eddyhub.gnome_shell
 	sudo ansible-playbook setup.yml -i hosts -c local -v #--ask-sudo-pass
 
 apply:
