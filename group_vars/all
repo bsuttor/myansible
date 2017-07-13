@@ -19,8 +19,8 @@ atom_packages:
   - linter-puppet-lint
   - linter-ui-default
   - project-manager
-  - python isort
+  - python-isort
   - sort-lines
-  - toogle-quotes
+  - toggle-quotes
 bin_dir: /usr/local/bin
 github_username: "{{ lookup('env','HOME') }}"
