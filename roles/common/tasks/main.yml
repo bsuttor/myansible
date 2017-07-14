@@ -33,5 +33,6 @@
 - include: rvm.yml
 - include: slack.yml
 - include: vim.yml
+- include: wifi.yml
 - include: yubikey.yml
 - include: zsh.yml

@@ -22,3 +22,18 @@
     name:   "{{ username }}"
     groups: docker
     append: yes
+
+- name: docker | installing packages
+  apt:
+    name: python-setuptools
+    state: present
+
+- name: docker | installing pip
+  easy_install:
+    name: pip
+
+- name: docker | installing docker compose
+  pip:
+    name: docker-compose
+    version: "{{ docker_compose_version if docker_compose_version else omit }}"
+    state: present

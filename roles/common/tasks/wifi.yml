@@ -1,0 +1,16 @@
+---
+- name: wifi | set good user permission to system-connections folder
+  file:
+    path: "{{ homepath }}/Dropbox/config/system-connections"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    recurse: yes
+    state: directory
+
+- name: wifi | set link to system-connections
+  file:
+    src: "{{ homepath }}/Dropbox/config/system-connections"
+    dest: "/etc/NetworkManager/system-connections"
+    force: yes
+    state: link
+    mode: 0755
