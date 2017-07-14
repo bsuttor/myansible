@@ -1,0 +1,52 @@
+---
+# tasks file for beid
+- name: eid | check if packages are not installed yet
+  stat:
+    path: /usr/bin/eid-viewer
+  register: eid_installed
+
+- name: eid | download eid repo
+  get_url:
+    url: "https://eid.belgium.be/sites/default/files/software/eid-archive_{{ eid_version }}_all.deb"
+    dest: "/tmp/eid-archive_{{ eid_version }}_all.deb"
+  when: eid_installed.stat.exists == false
+
+- name: eid | install eid repo
+  apt:
+    deb: "/tmp/eid-archive_{{ eid_version }}_all.deb"
+    state: installed
+  notify: clean up temp files
+  when: eid_installed.stat.exists == false
+
+- name: eid | install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - eid-archive
+    - eid-viewer
+    - eid-mw
+  when: eid_installed.stat.exists == false
+  register: eid_install
+  notify:
+    - clean up temp files
+
+- name: eid | install Java browser plugin
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - icedtea-plugin
+    - default-jre
+  when: eid_install | succeeded
+
+#- name: Check if Firefox is installed
+#  command: dpkg-query -W 'firefox'
+#  register: eid_firefox
+#
+#- name: Install Firefox extension
+#  apt:
+#    name: "{{ eid_firefox_extension }}"
+#    state: present
+#  when: eid_firefox_extension and eid_firefox|failed

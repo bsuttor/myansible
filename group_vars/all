@@ -23,6 +23,18 @@ atom_packages:
   - sort-lines
   - toggle-quotes
 bin_dir: /usr/local/bin
-gnome_extension_path: /home/bsuttor/.local/share/gnome-shell/extensions/
 github_username: "bsuttor"
-gnome_shell_extensions: [15, 120, 178, 484, 723, 779]
+gnome_extension_path: /home/bsuttor/.local/share/gnome-shell/extensions/
+gnome_shell_extensions:
+    - 15
+    - 120
+    - 178
+    - 484
+    - 723
+gnome_extension_owner: bsuttor
+# 15: AlternateTab
+# 120: system-monitor
+# 178: SoftYubikey
+# 484: Workspace Grid
+# 723: Pixel Saver
+# 615: AppIndicator Support

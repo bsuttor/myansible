@@ -1,7 +1,8 @@
 ---
 - name: slack | install gdebi
   apt: name=gdebi
-  sudo: yes
+  become: yes
+  become_user: root
 
 - name: slack | check if is installed
   command: dpkg-query -W slack-desktop
@@ -16,6 +17,7 @@
   when: is_slack_installed.rc == 1
 
 - name: slack | install package
-  sudo: true
+  become: yes
+  become_user: root
   command: gdebi --non-interactive /tmp/slack-desktop.deb
   when: is_slack_installed.rc == 1
