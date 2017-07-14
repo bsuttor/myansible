@@ -30,3 +30,9 @@
     creates: bin/fullrelease
   become: yes
   become_user: "{{ username }}"
+
+- name: pythons | link virtualenv-2.7
+  file:
+    src: "/usr/bin/virtualenv"
+    dest: "/usr/local/bin/virtualenv-2.7"
+    state: link

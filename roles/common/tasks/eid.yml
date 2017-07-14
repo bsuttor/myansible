@@ -15,7 +15,6 @@
   apt:
     deb: "/tmp/eid-archive_{{ eid_version }}_all.deb"
     state: installed
-  notify: clean up temp files
   when: eid_installed.stat.exists == false
 
 - name: eid | install packages
@@ -29,8 +28,6 @@
     - eid-mw
   when: eid_installed.stat.exists == false
   register: eid_install
-  notify:
-    - clean up temp files
 
 - name: eid | install Java browser plugin
   apt:
