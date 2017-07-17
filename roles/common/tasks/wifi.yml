@@ -7,10 +7,10 @@
     recurse: yes
     state: directory
 
-- name: wifi | set link to system-connections
-  file:
-    src: "{{ homepath }}/Dropbox/config/system-connections"
-    dest: "/etc/NetworkManager/system-connections"
-    force: yes
-    state: link
-    mode: 0755
+# - name: wifi | set link to system-connections
+#   file:
+#     src: "{{ homepath }}/Dropbox/config/system-connections"
+#     dest: "/etc/NetworkManager/system-connections"
+#     force: yes
+#     state: link
+#     mode: 0755

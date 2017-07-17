@@ -36,3 +36,12 @@
     src: "/usr/bin/virtualenv"
     dest: "/usr/local/bin/virtualenv-2.7"
     state: link
+
+
+- name: pythons | .pypirc file
+  file:
+    src: "{{ homepath }}/Dropbox/config/pypirc"
+    dest: "{{ homepath }}/.pypirc"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link

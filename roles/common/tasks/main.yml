@@ -10,10 +10,11 @@
    - openssh-server
    - openvpn
    - network-manager-openvpn
-   - network-manager-openvpn-gnome 
+   - network-manager-openvpn-gnome
    - tig
    - wget
-   - clipit
+   - diodon
+   - net-tools
 
 - name: common | install package used to gnome shell
   apt: pkg={{ item }} state=present update_cache=yes
