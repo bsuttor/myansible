@@ -9,6 +9,7 @@ install:
 	sudo ansible-galaxy install gantsign.atom
 	sudo ansible-galaxy install jgkim.atom
 	sudo ansible-galaxy install eddyhub.gnome_shell
+	sudo ansible-galaxy install rvm_io.ruby
 	sudo ansible-playbook setup.yml -i hosts -c local -v #--ask-sudo-pass
 
 apply:

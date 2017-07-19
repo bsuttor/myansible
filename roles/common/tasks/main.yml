@@ -15,6 +15,7 @@
    - wget
    - diodon
    - net-tools
+   - lynx
 
 - name: common | install package used to gnome shell
   apt: pkg={{ item }} state=present update_cache=yes
@@ -35,7 +36,6 @@
 - include: lastpass.yml
 - include: plone.yml
 - include: pythons.yml
-- include: rvm.yml
 - include: slack.yml
 - include: vim.yml
 - include: wifi.yml

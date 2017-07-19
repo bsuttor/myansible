@@ -8,6 +8,7 @@ atom_packages:
   - autocomplete-python
   - blame
   - editorconfig
+  # - file-header
   - hyperclick
   - language-ansible
   - language-docker
