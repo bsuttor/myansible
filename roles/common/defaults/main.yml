@@ -2,3 +2,5 @@ slack_version: 2.6.3
 eid_version: 2017.4
 rvm1_rubies:
 - 'ruby-2.3.1'
+gecko_version: 0.18.0
+virtualbox_version: 5.1.24

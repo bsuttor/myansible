@@ -40,4 +40,5 @@
 - include: vim.yml
 - include: wifi.yml
 - include: yubikey.yml
+- include: virtualbox.yml
 - include: zsh.yml

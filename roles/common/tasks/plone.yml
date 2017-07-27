@@ -3,7 +3,9 @@
 - name: plone | install package needed by Zope/Plone
   apt: pkg={{ item }} state=present update_cache=yes
   become: yes
-  tags: packages
+  tags:
+   - packages
+   - plone
   with_items:
    - build-essential
    - git
@@ -22,7 +24,9 @@
 - name: plone | install packages needed by Pillow
   apt: pkg={{ item }} state=present update_cache=yes
   become: yes
-  tags: packages
+  tags:
+   - packages
+   - plone
   with_items:
    - libfreetype6-dev
    - libjpeg8-dev
@@ -32,3 +36,22 @@
    - tcl8.6-dev
    - tk8.6-dev
    - zlib1g-dev
+
+# robot
+- name: plone | download the gecko driver
+  get_url: url="https://github.com/mozilla/geckodriver/releases/download/v{{ gecko_version }}/geckodriver-v{{ gecko_version }}-linux64.tar.gz" dest=/tmp mode=0777
+  tags:
+   - plone
+   - geckodriver
+
+- name: plone | install the gecko driver
+  unarchive:
+    src: "/tmp/geckodriver-v{{ gecko_version }}-linux64.tar.gz"
+    dest: "/usr/local/bin/"
+    mode: 0775
+    copy: no
+    owner: "{{ username }}"
+    group: "{{ username }}"
+  tags:
+   - plone
+   - geckodriver

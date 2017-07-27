@@ -1,0 +1,67 @@
+---
+# tasks file for virtualbox: ubuntu.yml
+- name: virtualbox | add  oracle apt key
+  apt_key:
+    url: http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc
+    state: present
+  tags: virtualbox
+
+- name: virtualbox | add repository
+  apt_repository:
+    repo: deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib
+    state: present
+    mode: 0644
+  tags: virtualbox
+
+- name: virtualbox | install
+  apt:
+    name: virtualbox
+    state: latest
+    update_cache: yes
+  tags: virtualbox
+
+- name: virtualbox | install dkms package
+  apt:
+    name: virtualbox-dkms
+    state: latest
+  tags: virtualbox
+
+- name: virtualbox | install guest packages
+  apt: pkg={{ item }} state=latest
+  tags: virtualbox
+  with_items:
+   - virtualbox-ext-pack
+   - virtualbox-guest-additions-iso
+   - virtualbox-guest-dkms
+   - virtualbox-guest-utils
+   - virtualbox-guest-x11
+   - gnome-system-tools
+
+# after go to https://developer.microsoft.com/en-us/microsoft-edge/tools/vms/
+# - name: virtualbox | download guest additions iso
+#   get_url:
+#     url: "http://dlc.sun.com.edgesuite.net/virtualbox/{{ virtualbox_version }}/VBoxGuestAdditions_{{ virtualbox_version }}.iso"
+#     dest: /tmp
+#   tags: virtualbox
+#
+# - name: virtualbox |ensure mount dir exists
+#   file:
+#     path: /mnt/VBoxGuestAdditions_{{ virtualbox_version }}
+#     state: directory
+#   tags: virtualbox
+#
+#
+# - name: virtualbox | mount guest additions iso
+#   command: mount /tmp/VBoxGuestAdditions_{{ virtualbox_version }}.iso -o loop /mnt/VBoxGuestAdditions_{{ virtualbox_version }}
+#   register: virtualbox_guest_additions_mounted
+#   tags: virtualbox
+#
+# - name: virtualbox | guest additions present
+#   shell: "/mnt/VBoxGuestAdditions_{{ virtualbox_version }}/VBoxLinuxAdditions.run --nox11 -- --force creates=/lib/modules/{{ ansible_kernel }}/updates/dkms/vboxguest.ko"
+#   ignore_errors: True
+#   tags: virtualbox
+#
+# - name: virtualbox | umount guest additions iso
+#   shell: umount /mnt/VBoxGuestAdditions_{{ virtualbox_version }} removes=/mnt/VBoxGuestAdditions_{{ virtualbox_version }}
+#   when: virtualbox_guest_additions_mounted.changed
+#   tags: virtualbox

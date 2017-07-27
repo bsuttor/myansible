@@ -6,10 +6,7 @@ install:
 	sudo apt-add-repository -y ppa:ansible/ansible
 	sudo apt-get update
 	sudo apt-get install -y ansible
-	sudo ansible-galaxy install gantsign.atom
-	sudo ansible-galaxy install jgkim.atom
-	sudo ansible-galaxy install eddyhub.gnome_shell
-	sudo ansible-galaxy install rvm_io.ruby
+	sudo ansible-galaxy install -r requirements.yml --ignore-errors
 	sudo ansible-playbook setup.yml -i hosts -c local -v #--ask-sudo-pass
 
 apply:
