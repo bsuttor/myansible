@@ -9,6 +9,7 @@ atom_packages:
   - blame
   - editorconfig
   # - file-header
+  - highlight-selected
   - hyperclick
   - language-ansible
   - language-docker

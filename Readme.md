@@ -71,3 +71,14 @@ Configure your computer
 3. Launch
 
     $ make apply
+
+
+Todo after
+----------
+
+- Set your profile terminal
+- Go to /opt/pythons:
+  - Comments pythons (in buildout.cfg in parts) you do not needed.
+  - $ python bootstrap.py
+  - $ ./bin/buildout
+- Configure your gnome-extensions

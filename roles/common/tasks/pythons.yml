@@ -5,6 +5,7 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     state: directory
+  tags: pythons
 
 - name: pythons | python-tools | update/clone python-tools repo
   git:
@@ -13,6 +14,7 @@
     accept_hostkey: yes
   become: yes
   become_user: "{{ username }}"
+  tags: pythons
 
 - name: pythons | python-tools | create buildout
   command: python bootstrap.py
@@ -21,6 +23,7 @@
     creates: bin/buildout
   become: yes
   become_user: "{{ username }}"
+  tags: pythons
 
 
 - name: pythons | python-tools | start buildout
@@ -30,13 +33,7 @@
     creates: bin/fullrelease
   become: yes
   become_user: "{{ username }}"
-
-- name: pythons | link virtualenv-2.7
-  file:
-    src: "/usr/bin/virtualenv"
-    dest: "/usr/local/bin/virtualenv-2.7"
-    state: link
-
+  tags: pythons
 
 - name: pythons | .pypirc file
   file:
@@ -45,3 +42,30 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     state: link
+  tags: pythons
+
+- name: pythons | update/clone buildout-python repo
+  git:
+    repo: "git@github.com:collective/buildout.python.git"
+    dest: "/opt/pythons"
+    accept_hostkey: yes
+    update: no
+  become: yes
+  become_user: "{{ username }}"
+  tags: pythons
+
+- name: pythons | set good owner of /opt
+  file:
+    path: "/opt/bin"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: directory
+  tags: pythons
+
+- name: pythons | link virtualenv-2.7
+  file:
+    src: "/opt/pythons/bin/virtualenv-2.7"
+    dest: "/usr/local/bin/virtualenv-2.7"
+    state: link
+    force: yes
+  tags: pythons
