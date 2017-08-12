@@ -16,6 +16,8 @@
    - diodon
    - net-tools
    - lynx
+   # needed for rvm
+   - libaugeas-dev
 
 - name: common | install package used to gnome shell
   apt: pkg={{ item }} state=present update_cache=yes

@@ -19,6 +19,8 @@
    - python-dev
    - python-virtualenv
    - wv
+   - libpcre3
+   - libpcre3-dev
    # - subversion
 
 - name: plone | install packages needed by Pillow
