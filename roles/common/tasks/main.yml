@@ -16,6 +16,7 @@
    - diodon
    - net-tools
    - lynx
+   - shutter
    # needed for rvm
    - libaugeas-dev
 
