@@ -21,6 +21,7 @@
    - libaugeas-dev
    - dnsmasq
    - libncurses5-dev
+   - graphviz
 
 - name: common | install package used to gnome shell
   apt: pkg={{ item }} state=present update_cache=yes
