@@ -22,6 +22,7 @@
    - dnsmasq
    - libncurses5-dev
    - graphviz
+   - ldap-utils
 
 - name: common | install package used to gnome shell
   apt: pkg={{ item }} state=present update_cache=yes
