@@ -24,6 +24,7 @@ atom_packages:
   - python-isort
   - sort-lines
   - toggle-quotes
+  - language-jenkinsfile
 bin_dir: /usr/local/bin
 github_username: "bsuttor"
 gnome_extension_owner: bsuttor
