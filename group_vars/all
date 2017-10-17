@@ -37,3 +37,7 @@ gnome_shell_extensions: [15, 120, 178, 484, 723, 1031]
 # 723: Pixel Saver
 # 615: AppIndicator Support
 # 1031: TopIcons Plus
+nvm_user: "bsuttor"
+nodejs_version: "8.x"
+nvm_version: "v0.33.5"
+nvm_node_version: "6.10.3"

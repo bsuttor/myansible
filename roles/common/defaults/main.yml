@@ -1,4 +1,4 @@
-slack_version: 2.6.3
+slack_version: 2.8.1
 eid_version: 2017.4
 rvm1_rubies:
 - 'ruby-2.3.1'
