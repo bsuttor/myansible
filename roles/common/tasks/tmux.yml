@@ -1,0 +1,16 @@
+---
+- name: tmux | installation
+  apt: name=tmux state=latest
+  register: installation
+  tags: tmux
+
+- name: tmux | link .tmux.conf to Dropbox
+  file:
+    src: "{{ homepath }}/Dropbox/config/tmux.conf"
+    dest: "{{ homepath }}/.tmux.conf"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link
+  become: yes
+  tags: tmux
+  become_user: "{{ username }}"

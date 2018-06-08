@@ -8,9 +8,10 @@
    - plone
   with_items:
    - build-essential
-   - git
    - libbz2-dev
    - libjpeg62-dev
+   - libpcre3
+   - libpcre3-dev
    - libreadline-gplv2-dev
    - libssl-dev
    - libxml2-dev
@@ -19,9 +20,6 @@
    - python-dev
    - python-virtualenv
    - wv
-   - libpcre3
-   - libpcre3-dev
-   # - subversion
 
 - name: plone | install packages needed by Pillow
   apt: pkg={{ item }} state=present update_cache=yes

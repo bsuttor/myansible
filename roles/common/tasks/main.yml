@@ -41,11 +41,12 @@
 - include: eid.yml
 - include: git.yml
 - include: lastpass.yml
-- include: plone.yml
-- include: pythons.yml
+# - include: plone.yml
+# - include: pythons.yml
 - include: slack.yml
+- include: tmux.yml
 - include: vim.yml
-- include: wifi.yml
-- include: yubikey.yml
-- include: virtualbox.yml
+# - include: wifi.yml
+# - include: yubikey.yml
+# - include: virtualbox.yml
 - include: zsh.yml

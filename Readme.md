@@ -9,7 +9,7 @@ FYI, Dropbox is used to keep some configuration files as ~/.vimrc, ~/.zshrc, ~/.
 Testing
 -------
 
-Docker / docker-comose are used to test this environment, you can start VNC local test env with:
+Docker / docker-compose are used to test this environment, you can start VNC local test env with:
 
     $ make up
 
