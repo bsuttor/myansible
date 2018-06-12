@@ -5,6 +5,7 @@
   tags: packages
   with_items:
    - apt-utils
+   - libcurl4
    - curl
    - htop
    - openssh-server
@@ -40,9 +41,9 @@
 - include: docker.yml
 - include: eid.yml
 - include: git.yml
-- include: lastpass.yml
+# - include: lastpass.yml
 # - include: plone.yml
-# - include: pythons.yml
+- include: pythons.yml
 - include: slack.yml
 - include: tmux.yml
 - include: vim.yml

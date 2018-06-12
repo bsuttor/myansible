@@ -4,18 +4,21 @@
   stat:
     path: /usr/bin/eid-viewer
   register: eid_installed
+  tags: eid
 
 - name: eid | download eid repo
   get_url:
     url: "https://eid.belgium.be/sites/default/files/software/eid-archive_{{ eid_version }}_all.deb"
     dest: "/tmp/eid-archive_{{ eid_version }}_all.deb"
   when: eid_installed.stat.exists == false
+  tags: eid
 
 - name: eid | install eid repo
   apt:
     deb: "/tmp/eid-archive_{{ eid_version }}_all.deb"
     state: installed
   when: eid_installed.stat.exists == false
+  tags: eid
 
 - name: eid | install packages
   apt:
@@ -23,11 +26,13 @@
     state: present
     update_cache: yes
   with_items:
+    - libcurl3
     - eid-archive
     - eid-viewer
     - eid-mw
   when: eid_installed.stat.exists == false
   register: eid_install
+  tags: eid
 
 - name: eid | install Java browser plugin
   apt:
@@ -37,6 +42,7 @@
     - icedtea-plugin
     - default-jre
   when: eid_install | succeeded
+  tags: eid
 
 #- name: Check if Firefox is installed
 #  command: dpkg-query -W 'firefox'

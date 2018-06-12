@@ -1,4 +1,15 @@
 ---
+- name: pythons | install some python packages
+  apt: pkg={{ item }} state=present update_cache=yes
+  become: yes
+  tags:
+   - packages
+   - pythons
+  with_items:
+   - build-essential
+   - python-pip
+   - python-virtualenv
+
 - name: pythons | set good owner of /opt
   file:
     path: "/opt"
@@ -16,15 +27,23 @@
   become_user: "{{ username }}"
   tags: pythons
 
-- name: pythons | python-tools | create buildout
-  command: python bootstrap.py
+- name: pythons | python-tools | create venv
+  command: virtualenv .
+  args:
+    chdir: /opt/python-tools
+    creates: bin/pip
+  become: yes
+  become_user: "{{ username }}"
+  tags: pythons
+
+- name: pythons | python-tools | install buildout
+  command: bin/pip install -r requirements.txt
   args:
     chdir: /opt/python-tools
     creates: bin/buildout
   become: yes
   become_user: "{{ username }}"
   tags: pythons
-
 
 - name: pythons | python-tools | start buildout
   command: bin/buildout
@@ -44,15 +63,15 @@
     state: link
   tags: pythons
 
-- name: pythons | update/clone buildout-python repo
-  git:
-    repo: "git@github.com:collective/buildout.python.git"
-    dest: "/opt/pythons"
-    accept_hostkey: yes
-    update: no
-  become: yes
-  become_user: "{{ username }}"
-  tags: pythons
+# - name: pythons | update/clone buildout-python repo
+#   git:
+#     repo: "git@github.com:collective/buildout.python.git"
+#     dest: "/opt/pythons"
+#     accept_hostkey: yes
+#     update: no
+#   become: yes
+#   become_user: "{{ username }}"
+#   tags: pythons
 
 - name: pythons | set good owner of /opt
   file:
@@ -62,10 +81,10 @@
     state: directory
   tags: pythons
 
-- name: pythons | link virtualenv-2.7
-  file:
-    src: "/opt/pythons/bin/virtualenv-2.7"
-    dest: "/usr/local/bin/virtualenv-2.7"
-    state: link
-    force: yes
-  tags: pythons
+# - name: pythons | link virtualenv-2.7
+#   file:
+#     src: "/opt/pythons/bin/virtualenv-2.7"
+#     dest: "/usr/local/bin/virtualenv-2.7"
+#     state: link
+#     force: yes
+#   tags: pythons

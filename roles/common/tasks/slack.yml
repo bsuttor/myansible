@@ -3,11 +3,13 @@
   apt: name=gdebi
   become: yes
   become_user: root
+  tags: slack
 
 - name: slack | check if is installed
   command: dpkg-query -W slack-desktop
   register: is_slack_installed
   failed_when: false
+  tags: slack
   changed_when: false
 
 - name: slack | download package
@@ -15,9 +17,11 @@
   args:
     creates: "/tmp/slack-desktop.deb"
   when: is_slack_installed.rc == 1
+  tags: slack
 
 - name: slack | install package
   become: yes
   become_user: root
   command: gdebi --non-interactive /tmp/slack-desktop.deb
   when: is_slack_installed.rc == 1
+  tags: slack

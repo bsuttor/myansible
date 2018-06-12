@@ -12,6 +12,7 @@
   register: cloning
   become: yes
   become_user: "{{ username }}"
+  tags: zsh
 
 - name: zsh | link zshrc to Dropbox
   file:
@@ -22,3 +23,10 @@
     state: link
   become: yes
   become_user: "{{ username }}"
+  tags: zsh
+
+- name: ensure user is using zsh shell
+  user:
+    name: "{{ username }}"
+    shell: /bin/zsh
+  tags: zsh

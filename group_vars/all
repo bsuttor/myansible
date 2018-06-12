@@ -29,9 +29,11 @@ bin_dir: /usr/local/bin
 github_username: "bsuttor"
 gnome_extension_owner: bsuttor
 gnome_extension_path: /home/bsuttor/.local/share/gnome-shell/extensions/
-gnome_shell_extensions: [15, 120, 178, 484, 615, 723, 1031]
+gnome_shell_extensions: [15, 120, 484]
+# gnome_shell_extensions: [15, 120, 178, 484, 615, 723, 1031]
 # 15: AlternateTab
-# 120: system-monitor
+# 16: Auto move windows
+# 120: System monitor
 # 178: SoftYubikey
 # 484: Workspace Grid
 # 723: Pixel Saver
@@ -39,5 +41,12 @@ gnome_shell_extensions: [15, 120, 178, 484, 615, 723, 1031]
 # 1031: TopIcons Plus
 nvm_user: "bsuttor"
 nodejs_version: "8.x"
-nvm_version: "v0.33.5"
+nvm_version: "v0.33.11"
 nvm_node_version: "6.10.3"
+docker_compose_version: 1.21.2
+slack_version: 3.2.1
+eid_version: 2018.2
+rvm1_rubies:
+- 'ruby-2.3.1'
+gecko_version: 0.19.1
+virtualbox_version: 5.2.6

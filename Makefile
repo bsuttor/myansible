@@ -12,6 +12,8 @@ install:
 apply:
 	sudo ansible-playbook apply.yml -i hosts -c local -v #--ask-sudo-pass
 
+# sudo ansible-playbook apply.yml -i hosts -c local -v -t docker
+
 build:
 	docker-compose rm -f
 	docker-compose build

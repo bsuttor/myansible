@@ -1,8 +1,15 @@
 ---
+- name: Work out the distribution
+  command: lsb_release -cs
+  register: result
+  tags: docker
+
 - name: docker | install package dependency
   apt: pkg={{ item }} state=present update_cache=yes
   become: yes
-  tags: packages
+  tags:
+    - packages
+    - docker
   with_items:
     - apt-transport-https
     - ca-certificates
@@ -15,18 +22,21 @@
 # lsb_release -cs
 - name: docker | set stable repository
   apt_repository:
-    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu zesty stable"
+    repo: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ result.stdout }} test"
     update_cache: yes
+  tags: docker
 
 - name: docker | install (or update) docker package
   apt:
     name: "docker-ce"
     state: "latest"
+  tags: docker
 
 - name: docker | start
   service:
     name: docker
     state: started
+  tags: docker
 
 # ATTENTION: this task can potentially create new users!
 - name: docker | add user to the docker group
@@ -34,8 +44,14 @@
     name:   "{{ username }}"
     groups: docker
     append: yes
+  tags: docker
 
 - name: docker | installing docker compose
-  pip:
-    name: docker-compose
-    state: latest
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+    dest: "/usr/local/bin/docker-compose"
+    force: True
+    owner: "root"
+    group: "root"
+    mode: "0755"
+  tags: docker

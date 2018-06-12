@@ -5,11 +5,11 @@
     - gantsign.atom
     - jgkim.atom
     - common
-    # - eddyhub.gnome_shell
+    - eddyhub.gnome_shell
     - tersmitten.dns
-    - { role: rvm_io.ruby,
-        tags: ruby,
-        rvm1_rubies: ['ruby-2.3.1'],
-        rvm1_user: 'bsuttor'
-      }
     - moviedo.nvm
+    # - { role: rvm_io.ruby,
+    #     tags: ruby,
+    #     rvm1_rubies: ['ruby-2.3.1'],
+    #     rvm1_user: 'bsuttor'
+    #   }
