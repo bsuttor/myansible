@@ -22,12 +22,11 @@ Install Ansible
 ---------------
 First install git :
 
-    $ sudo apt install git
+    $ sudo apt install git make
 
 Then clone myansible repo and go in it.
 
-    $ git clone https://github.com/bsuttor/myansible
-    $ cd myansible
+    $ git clone https://github.com/bsuttor/myansible && cd myansible
 
 And then, install ansible
 
