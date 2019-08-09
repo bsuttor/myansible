@@ -15,3 +15,15 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: 0755
+
+
+- name: git | link init ignore to Dropbox
+  file:
+    src: "{{ homepath }}/Dropbox/config/ignore"
+    dest: "{{ homepath }}/.ignore"
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    state: link
+  become: yes
+  become_user: "{{ username }}"
+  tags: nvim
